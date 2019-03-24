@@ -10,6 +10,16 @@ module.exports = function check(str, bracketsConfig) {
     var bracket = str[i];
 
     for (var j = 0; j < bracketsConfig.length; j++) {
+      if (bracket == bracketsConfig[j][0] && bracket == bracketsConfig[j][1]) {
+        var bracketL = bracketsStack[bracketsStack.length - 1];
+
+        if (bracket == bracketL) {
+          bracketsStack.pop();
+
+          break;
+        }
+      }
+
       if (bracket == bracketsConfig[j][0]) {
         bracketsStack.push(bracketsConfig[j][1]);
 
@@ -37,6 +47,4 @@ module.exports = function check(str, bracketsConfig) {
   } else {
     return false;
   }
-
-
 }
